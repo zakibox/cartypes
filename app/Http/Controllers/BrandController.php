@@ -14,15 +14,8 @@ class BrandController extends Controller
      */
     public function index()
     {
-        try {
-            $brands = Brand::all();
-            return response()->json($brands);
-        } catch (\Exception $e) {
-            return response()->json([
-                'message' => 'Failed to retrieve brands',
-                'error' => $e->getMessage()
-            ], 500);
-        }
+        $brands = Brand::all();
+        return response()->json($brands);
     }
 
     /**
@@ -30,28 +23,17 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        try {
-            $request->validate([
-                'name' => 'required|string|max:255',
-            ]);
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
 
-            $brand = Brand::create($request->all());
-            $brand->addMediaFromRequest('img')->toMediaCollection();
-            return response()->json([
-                'message' => 'Brand created successfully',
-                'brand' => $brand
-            ], 201);
-        } catch (ValidationException $e) {
-            return response()->json([
-                'message' => 'Validation failed',
-                'errors' => $e->errors()
-            ], 422);
-        } catch (\Exception $e) {
-            return response()->json([
-                'message' => 'Failed to create brand',
-                'error' => $e->getMessage()
-            ], 500);
-        }
+        $brand = Brand::create($request->all());
+        $brand->addMediaFromRequest('img')->toMediaCollection();
+
+        return response()->json([
+            'message' => 'Brand created successfully',
+            'brand' => $brand
+        ], 201);
     }
 
     /**
@@ -59,19 +41,7 @@ class BrandController extends Controller
      */
     public function show(Brand $brand)
     {
-        try {
-            return response()->json($brand);
-        } catch (ModelNotFoundException $e) {
-            return response()->json([
-                'message' => 'Brand not found',
-                'error' => $e->getMessage()
-            ], 404);
-        } catch (\Exception $e) {
-            return response()->json([
-                'message' => 'Failed to retrieve brand',
-                'error' => $e->getMessage()
-            ], 500);
-        }
+        return response()->json($brand);
     }
 
     /**
@@ -79,33 +49,16 @@ class BrandController extends Controller
      */
     public function update(Request $request, Brand $brand)
     {
-        try {
-            $request->validate([
-                'name' => 'required|string|min:1|max:255',
-            ]);
+        $request->validate([
+            'name' => 'required|string|min:1|max:255',
+        ]);
 
-            $brand->update($request->all());
+        $brand->update($request->all());
 
-            return response()->json([
-                'message' => 'Brand updated successfully',
-                'brand' => $brand
-            ]);
-        } catch (ValidationException $e) {
-            return response()->json([
-                'message' => 'Validation failed',
-                'errors' => $e->errors()
-            ], 422);
-        } catch (ModelNotFoundException $e) {
-            return response()->json([
-                'message' => 'Brand not found',
-                'error' => $e->getMessage()
-            ], 404);
-        } catch (\Exception $e) {
-            return response()->json([
-                'message' => 'Failed to update brand',
-                'error' => $e->getMessage()
-            ], 500);
-        }
+        return response()->json([
+            'message' => 'Brand updated successfully',
+            'brand' => $brand
+        ]);
     }
 
     /**
@@ -113,22 +66,10 @@ class BrandController extends Controller
      */
     public function destroy(Brand $brand)
     {
-        try {
-            $brand->delete();
+        $brand->delete();
 
-            return response()->json([
-                'message' => 'Brand deleted successfully'
-            ]);
-        } catch (ModelNotFoundException $e) {
-            return response()->json([
-                'message' => 'Brand not found',
-                'error' => $e->getMessage()
-            ], 404);
-        } catch (\Exception $e) {
-            return response()->json([
-                'message' => 'Failed to delete brand',
-                'error' => $e->getMessage()
-            ], 500);
-        }
+        return response()->json([
+            'message' => 'Brand deleted successfully'
+        ]);
     }
 }

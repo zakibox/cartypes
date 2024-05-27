@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Categorie;
@@ -14,15 +13,8 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        try {
-            $categories = Categorie::all();
-            return response()->json($categories);
-        } catch (\Exception $e) {
-            return response()->json([
-                'message' => 'Failed to retrieve categories',
-                'error' => $e->getMessage()
-            ], 500);
-        }
+        $categories = Categorie::all();
+        return response()->json($categories);
     }
 
     /**
@@ -30,28 +22,16 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        try {
-            $request->validate([
-                'name' => 'required|string|max:255',
-            ]);
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
 
-            $categorie = Categorie::create($request->all());
+        $categorie = Categorie::create($request->all());
 
-            return response()->json([
-                'message' => 'Category created successfully',
-                'category' => $categorie
-            ], 201);
-        } catch (ValidationException $e) {
-            return response()->json([
-                'message' => 'Validation failed',
-                'errors' => $e->errors()
-            ], 422);
-        } catch (\Exception $e) {
-            return response()->json([
-                'message' => 'Failed to create category',
-                'error' => $e->getMessage()
-            ], 500);
-        }
+        return response()->json([
+            'message' => 'Category created successfully',
+            'category' => $categorie
+        ], 201);
     }
 
     /**
@@ -59,19 +39,7 @@ class CategoriesController extends Controller
      */
     public function show(Categorie $categorie)
     {
-        try {
-            return response()->json($categorie);
-        } catch (ModelNotFoundException $e) {
-            return response()->json([
-                'message' => 'Category not found',
-                'error' => $e->getMessage()
-            ], 404);
-        } catch (\Exception $e) {
-            return response()->json([
-                'message' => 'Failed to retrieve category',
-                'error' => $e->getMessage()
-            ], 500);
-        }
+        return response()->json($categorie);
     }
 
     /**
@@ -79,33 +47,16 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, Categorie $categorie)
     {
-        try {
-            $request->validate([
-                'name' => 'required|string|min:1|max:255',
-            ]);
+        $request->validate([
+            'name' => 'required|string|min:1|max:255',
+        ]);
 
-            $categorie->update($request->all());
+        $categorie->update($request->all());
 
-            return response()->json([
-                'message' => 'Category updated successfully',
-                'category' => $categorie
-            ]);
-        } catch (ValidationException $e) {
-            return response()->json([
-                'message' => 'Validation failed',
-                'errors' => $e->errors()
-            ], 422);
-        } catch (ModelNotFoundException $e) {
-            return response()->json([
-                'message' => 'Category not found',
-                'error' => $e->getMessage()
-            ], 404);
-        } catch (\Exception $e) {
-            return response()->json([
-                'message' => 'Failed to update category',
-                'error' => $e->getMessage()
-            ], 500);
-        }
+        return response()->json([
+            'message' => 'Category updated successfully',
+            'category' => $categorie
+        ]);
     }
 
     /**
@@ -113,22 +64,10 @@ class CategoriesController extends Controller
      */
     public function destroy(Categorie $categorie)
     {
-        try {
-            $categorie->delete();
+        $categorie->delete();
 
-            return response()->json([
-                'message' => 'Category deleted successfully'
-            ]);
-        } catch (ModelNotFoundException $e) {
-            return response()->json([
-                'message' => 'Category not found',
-                'error' => $e->getMessage()
-            ], 404);
-        } catch (\Exception $e) {
-            return response()->json([
-                'message' => 'Failed to delete category',
-                'error' => $e->getMessage()
-            ], 500);
-        }
+        return response()->json([
+            'message' => 'Category deleted successfully'
+        ]);
     }
 }
