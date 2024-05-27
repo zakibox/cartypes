@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Validation\ValidationException;
 
-class CategoriesController extends Controller
+class categoriesController extends Controller
 {
     /**
      * Display a listing of the resource.

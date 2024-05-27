@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Fuel;
 use Illuminate\Http\Request;
 
-class FuelsController extends Controller
+class fuelsController extends Controller
 {
     /**
      * Display a listing of the resource.

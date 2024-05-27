@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Validation\ValidationException;
 
-class BrandController extends Controller
+class brandController extends Controller
 {
     /**
      * Display a listing of the resource.

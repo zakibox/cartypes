@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\BrandController;
-use App\Http\Controllers\CategoriesController;
-use App\Http\Controllers\FuelsController;
-use App\Http\Controllers\ModelsController;
+use App\Http\Controllers\brandController;
+use App\Http\Controllers\categoriesController;
+use App\Http\Controllers\fuelsController;
+use App\Http\Controllers\modelsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,8 +18,8 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-Route::resource('brands', BrandController::class)->except('store');
-Route::post('brands', [BrandController::class ,'store']);
-Route::resource('categories', CategoriesController::class);
-Route::resource('fuels', FuelsController::class);
-Route::resource('models', ModelsController::class);
+Route::resource('brands', brandController::class)->except('store');
+Route::post('brands', [brandController::class ,'store']);
+Route::resource('categories', categoriesController::class);
+Route::resource('fuels', fuelsController::class);
+Route::resource('models', modelsController::class);
