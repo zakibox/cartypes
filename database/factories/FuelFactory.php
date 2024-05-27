@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Fuel>
  */
-class BrandsFactory extends Factory
+class FuelFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,8 +17,7 @@ class BrandsFactory extends Factory
     public function definition(): array
     {
         return [
-            "name" => fake()->name(),
-            "img" => "https://www.pexels.com/photo/blue-bmw-sedan-near-green-lawn-grass-170811/"
+            'fuel' => $this->faker->word,
         ];
     }
 }
