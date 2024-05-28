@@ -6,7 +6,7 @@ use App\Http\Resources\CarModelResource;
 use App\Models\CarModel;
 use Illuminate\Http\Request;
 
-class ModelsController extends Controller
+class ModelController extends Controller
 {
     public function index()
     {
@@ -38,7 +38,8 @@ class ModelsController extends Controller
      */
     public function show(CarModel $model)
     {
-        return CarModelResource::collection($model);
+        return CarModelResource::make($model);
+        // Or   return new CarModelResource($model);
     }
 
     /**
