@@ -1,15 +1,17 @@
 <?php
+
 namespace App\Http\Controllers;
 
-use App\Models\Models;
+use App\Http\Resources\CarModelResource;
+use App\Models\CarModel;
 use Illuminate\Http\Request;
 
-class modelsController extends Controller
+class ModelsController extends Controller
 {
     public function index()
     {
-        $models = Models::all();
-        return response()->json($models);
+        $models = CarModel::all();
+        return CarModelResource::collection($models);
     }
 
     /**
@@ -24,7 +26,7 @@ class modelsController extends Controller
             'category_id' => 'required|integer'
         ]);
 
-        $model = Models::create($request->all());
+        $model = CarModel::create($request->all());
 
         return response()->json([
             'message' => 'Model created successfully',
@@ -35,7 +37,7 @@ class modelsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Models $model)
+    public function show(CarModel $model)
     {
         return response()->json($model);
     }
@@ -43,7 +45,7 @@ class modelsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Models $model)
+    public function update(Request $request, CarModel $model)
     {
         $request->validate([
             'name' => 'required|string|max:255',
@@ -63,7 +65,7 @@ class modelsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Models $model)
+    public function destroy(CarModel $model)
     {
         $model->delete();
 
