@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CategoriesResource;
 use App\Models\Categorie;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -14,7 +15,7 @@ class categoriesController extends Controller
     public function index()
     {
         $categories = Categorie::all();
-        return response()->json($categories);
+        return CategoriesResource::collection($categories);
     }
 
     /**
@@ -30,7 +31,6 @@ class categoriesController extends Controller
 
         return response()->json([
             'message' => 'Category created successfully',
-            'category' => $categorie
         ], 201);
     }
 
@@ -39,7 +39,7 @@ class categoriesController extends Controller
      */
     public function show(Categorie $categorie)
     {
-        return response()->json($categorie);
+        return CategoriesResource::collection($categorie);
     }
 
     /**
@@ -55,7 +55,6 @@ class categoriesController extends Controller
 
         return response()->json([
             'message' => 'Category updated successfully',
-            'category' => $categorie
         ]);
     }
 

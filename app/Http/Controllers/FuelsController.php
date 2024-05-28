@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Http\Resources\FuelsResource;
 use App\Models\Fuel;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,7 @@ class fuelsController extends Controller
     public function index()
     {
         $fuels = Fuel::all();
-        return response()->json($fuels);
+        return FuelsResource::collection($fuels);
     }
 
     /**
@@ -27,8 +28,7 @@ class fuelsController extends Controller
         $fuel = Fuel::create($request->all());
 
         return response()->json([
-            'message' => 'Fuel created successfully',
-            'fuel' => $fuel
+            'message' => 'Fuel created successfully'
         ], 201);
     }
 
@@ -37,19 +37,9 @@ class fuelsController extends Controller
      */
     public function show(Fuel $fuel)
     {
-        return response()->json($fuel);
+        return FuelsResource::collection($fuel);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Fuel $fuel)
-    {
-        // Not applicable for API. You can remove this method or handle differently.
-        return response()->json([
-            'message' => 'This endpoint is not used for APIs'
-        ], 404);
-    }
 
     /**
      * Update the specified resource in storage.
@@ -63,8 +53,7 @@ class fuelsController extends Controller
         $fuel->update($request->all());
 
         return response()->json([
-            'message' => 'Fuel updated successfully',
-            'fuel' => $fuel
+            'message' => 'Fuel updated successfully'
         ]);
     }
 

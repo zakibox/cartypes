@@ -29,8 +29,7 @@ class ModelsController extends Controller
         $model = CarModel::create($request->all());
 
         return response()->json([
-            'message' => 'Model created successfully',
-            'model' => $model
+            'message' => 'Model created successfully'
         ], 201);
     }
 
@@ -39,7 +38,7 @@ class ModelsController extends Controller
      */
     public function show(CarModel $model)
     {
-        return response()->json($model);
+        return CarModelResource::collection($model);
     }
 
     /**
@@ -57,8 +56,7 @@ class ModelsController extends Controller
         $model->update($request->all());
 
         return response()->json([
-            'message' => 'Model updated successfully',
-            'model' => $model
+            'message' => 'Model updated successfully'
         ]);
     }
 

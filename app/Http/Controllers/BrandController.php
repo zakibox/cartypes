@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\BrandsResource;
 use App\Models\Brand;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -15,7 +16,7 @@ class brandController extends Controller
     public function index()
     {
         $brands = Brand::all();
-        return response()->json($brands);
+        return BrandsResource::collection($brands);
     }
 
     /**
@@ -41,7 +42,7 @@ class brandController extends Controller
      */
     public function show(Brand $brand)
     {
-        return response()->json($brand);
+        return BrandsResource::collection($brand);
     }
 
     /**
