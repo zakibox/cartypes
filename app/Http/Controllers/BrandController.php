@@ -42,7 +42,7 @@ class brandController extends Controller
      */
     public function show(Brand $brand)
     {
-        return BrandsResource::collection($brand);
+        return new BrandsResource($brand);
     }
 
     /**

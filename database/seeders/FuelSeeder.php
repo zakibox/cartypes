@@ -13,6 +13,6 @@ class FuelSeeder extends Seeder
      */
     public function run(): void
     {
-     Fuel::factory(5)->create();
+     Fuel::factory()->create();
     }
 }

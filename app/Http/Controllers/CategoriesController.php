@@ -39,7 +39,7 @@ class categoriesController extends Controller
      */
     public function show(Categorie $categorie)
     {
-        return CategoriesResource::collection($categorie);
+        return new CategoriesResource($categorie);
     }
 
     /**

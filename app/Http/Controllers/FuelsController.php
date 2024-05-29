@@ -37,7 +37,7 @@ class fuelsController extends Controller
      */
     public function show(Fuel $fuel)
     {
-        return FuelsResource::collection($fuel);
+        return new FuelsResource($fuel);
     }
 
 
@@ -47,7 +47,7 @@ class fuelsController extends Controller
     public function update(Request $request, Fuel $fuel)
     {
         $request->validate([
-            'name' => 'required|string|min:1|max:255',
+            'fuel' => 'required|string|min:1|max:255',
         ]);
 
         $fuel->update($request->all());

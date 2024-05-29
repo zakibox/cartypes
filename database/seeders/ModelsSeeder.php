@@ -13,6 +13,6 @@ class ModelsSeeder extends Seeder
      */
     public function run(): void
     {
-        CarModel::factory(5)->create();
+        CarModel::factory()->create();
     }
 }

@@ -38,8 +38,7 @@ class ModelController extends Controller
      */
     public function show(CarModel $model)
     {
-        return CarModelResource::make($model);
-        // Or   return new CarModelResource($model);
+           return new CarModelResource($model);
     }
 
     /**
