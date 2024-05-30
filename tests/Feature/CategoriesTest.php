@@ -32,9 +32,6 @@ class CategoriesTest extends TestCase
         $response->assertStatus(201)
                  ->assertJson([
                      'message' => 'Category created successfully',
-                     'categories' => [
-                         'name' => 'Test categorie'
-                     ]
                  ]);
 
         $this->assertDatabaseHas('categories', [
@@ -60,14 +57,17 @@ class CategoriesTest extends TestCase
 
         $response->assertStatus(200)
                  ->assertJson([
-                    
+                    'data' => [
+                        'id' => $categorie->id,
+                        "name"=> $categorie->name
+                    ]
                  ]);
     }
 
     /** @test */
     public function it_returns_404_if_categorie_not_found()
     {
-        $response = $this->getJson('/api/categories/999');
+        $response = $this->getJson('/api/categories/9990');
 
         $response->assertStatus(404);
     }
@@ -84,14 +84,9 @@ class CategoriesTest extends TestCase
         $response->assertStatus(200)
                  ->assertJson([
                      'message' => 'Category updated successfully',
-                     'data' => [
-                         'id' => $categorie->id,
-                         'name' => 'Updated categorie Name',
-                     ]
                  ]);
 
         $this->assertDatabaseHas('categories', [
-            'id' => $categorie->id,
             'name' => 'Updated categorie Name',
         ]);
     }

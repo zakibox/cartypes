@@ -26,7 +26,7 @@ class BrandsTest extends TestCase
         $response = $this->postJson('/api/brands', [
             'name' => 'Test Brand',
             // because i worked with spatie media library a file should be uploaded got it ?
-            'img' => UploadedFile::fake()->image('test.jpg'),
+            'img' => fake()->image('testjpg'),
         ]);
 
         $response->assertStatus(201)
@@ -34,11 +34,13 @@ class BrandsTest extends TestCase
                      'message' => 'Brand created successfully',
                      'brand' => [
                          'name' => 'Test Brand',
+                         'img' => 'testjpg'
                      ]
                  ]);
 
         $this->assertDatabaseHas('brands', [
             'name' => 'Test Brand',
+            'img' => 'testjpg'
         ]);
     }
 
@@ -61,6 +63,10 @@ class BrandsTest extends TestCase
 
         $response->assertStatus(200)
                  ->assertJson([
+                    'data' => [
+                        'id' => $brand->id,
+                        "name"=> $brand->name
+                    ]
                  ]);
     }
 

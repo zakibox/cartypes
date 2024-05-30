@@ -21,7 +21,7 @@ class ModelsTest extends TestCase
     }
 
     /** @test */
-    public function it_creates_new_CarModel()
+    public function it_creates_new_Model()
     {
         $response = $this->postJson('/api/models', [
             'name' => 'Test CarModel',
@@ -87,7 +87,7 @@ class ModelsTest extends TestCase
         $CarModel = CarModel::factory()->create();
 
         $response = $this->putJson("/api/models/{$CarModel->id}", [
-            'name' => 'Updated Brand Name',
+            'name' => 'Updated CarModel Name',
             'fuel_id' => '1',
             'brand_id' => '1',
             'category_id' =>'1'

@@ -40,7 +40,7 @@ class FuelsTest extends TestCase
 
     /** @test */
     //wach nziid exception tests ??
-    public function it_shows_validation_error_when_creating_brand_without_name()
+    public function it_shows_validation_error_when_creating_fuel_without_name()
     {
         $response = $this->postJson('/api/fuels', []);
 
@@ -49,7 +49,7 @@ class FuelsTest extends TestCase
     }
 
     /** @test */
-    public function it_can_show_a_single_brand()
+    public function it_can_show_a_single_fuel()
     {
         $Fuel = Fuel::factory()->create();
 
@@ -57,12 +57,15 @@ class FuelsTest extends TestCase
 
         $response->assertStatus(200)
                  ->assertJson([
-                     
+                    'data' => [
+                        'id' => $Fuel->id,
+                        "name"=> $Fuel->name
+                    ]
                  ]);
     }
 
     /** @test */
-    public function it_returns_404_if_brand_not_found()
+    public function it_returns_404_if_fuel_not_found()
     {
         $response = $this->getJson('/api/fuels/999');
 
@@ -90,7 +93,7 @@ class FuelsTest extends TestCase
     }
 
     /** @test */
-    public function it_shows_validation_error_when_updating_brand_without_name()
+    public function it_shows_validation_error_when_updating_fuel_without_name()
     {
         $Fuel = Fuel::factory()->create();
 
@@ -101,7 +104,7 @@ class FuelsTest extends TestCase
     }
 
     /** @test */
-    public function it_can_delete_a_brand()
+    public function it_can_delete_a_fuel()
     {
         $Fuel = Fuel::factory()->create();
 
