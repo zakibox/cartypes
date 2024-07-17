@@ -5,7 +5,7 @@ namespace Tests\Feature;
 use App\Models\CarModel;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
-class ModelsTest extends TestCase
+class ModelTest extends TestCase
 {
     use RefreshDatabase;
 

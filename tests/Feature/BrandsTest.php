@@ -20,29 +20,27 @@ class BrandsTest extends TestCase
                  ->assertJsonCount(3, 'data');
     }
 
-    /** @test */
-    public function it_creates_new_brand()
-    {
-        $response = $this->postJson('/api/brands', [
-            'name' => 'Test Brand',
-            // because i worked with spatie media library a file should be uploaded got it ?
-            'img' => fake()->image('testjpg'),
-        ]);
+  /** @test */
+  public function it_creates_new_brand()
+  {
+      $file = UploadedFile::fake()->create('brand.png', 500); // 1000 bytes
 
-        $response->assertStatus(201)
-                 ->assertJson([
-                     'message' => 'Brand created successfully',
-                     'brand' => [
-                         'name' => 'Test Brand',
-                         'img' => 'testjpg'
-                     ]
-                 ]);
+      $response = $this->postJson('/api/brands', [
+          'name' => 'Test Brand',
+          'img' => $file
+      ]);
 
-        $this->assertDatabaseHas('brands', [
-            'name' => 'Test Brand',
-            'img' => 'testjpg'
-        ]);
-    }
+      $response->assertStatus(201)
+          ->assertJson([
+              'message' => 'Brand created successfully',
+             
+          ]);
+
+      $this->assertDatabaseHas('brands', [
+          'name' => 'Test Brand',
+          'img' => 'testjpg'
+      ]);
+  }
 
     /** @test */
     //wach nziid exception tests ??

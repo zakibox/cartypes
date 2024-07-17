@@ -6,9 +6,9 @@ use App\Models\Categorie;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class CategoriesTest extends TestCase
+class CategoryTest extends TestCase
 {
-    use RefreshDatabase;
+    // use RefreshDatabase;
 
     /** @test */
     public function it_retrieves_all_categories()
