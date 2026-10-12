@@ -36,4 +36,4 @@ Configure a local database first. Check the exact installed PHP/Laravel version 
 - Validate foreign-key relationships, uploads and mass-assignment policies; add integration tests.
 - The tracked `vendor/` directory should be removed from source control and covered by `.gitignore`.
 
-**Maintainer:** [zakibox](https://github.com/zakibox) · [Freelance portfolio and projects](https://github.com/zakibox/project-take).
+**Maintainer:** [zakibox](https://github.com/zakibox) · [Freelance portfolio and projects](https://github.com/zakibox/portfollio).
